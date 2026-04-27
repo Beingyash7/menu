@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Tasty Biryani House menu with smooth animation, rich visuals, and logo branding for easy sharing."
+  >
+  <title>Tasty Biryani House | Menu</title>
+  <style>
+    :root {
+      --bg: #0f3a30;
+      --bg-deep: #08241e;
+      --panel: rgba(14, 63, 51, 0.72);
+      --panel-border: rgba(255, 238, 188, 0.15);
+      --text: #fff6d5;
+      --muted: #d6cda9;
+      --accent: #f6d978;
+      --accent-strong: #ffc24b;
+      --glow: rgba(255, 205, 88, 0.35);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      --radius: 34px;
+      --font-display: "Trebuchet MS", "Gill Sans", "Segoe UI", sans-serif;
+      --font-body: "Verdana", "Geneva", sans-serif;
+      --toggle-bg: rgba(255, 243, 208, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(247, 211, 96, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 167, 66, 0.12), transparent 22%),
+        linear-gradient(180deg, #165542 0%, #0f3a30 46%, #08241e 100%);
+      font-family: var(--font-body);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 225, 151, 0.1), transparent 12%),
+        radial-gradient(circle at 80% 20%, rgba(255, 157, 72, 0.08), transparent 14%),
+        radial-gradient(circle at 70% 78%, rgba(255, 215, 114, 0.09), transparent 18%);
+      animation: ambientPulse 11s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background-image:
+        linear-gradient(115deg, transparent 0 41%, rgba(255, 255, 255, 0.04) 41% 44%, transparent 44% 100%),
+        linear-gradient(25deg, transparent 0 64%, rgba(255, 255, 255, 0.025) 64% 68%, transparent 68% 100%);
+      background-size: 320px 320px, 260px 260px;
+      mix-blend-mode: soft-light;
+      opacity: 0.5;
+      animation: textureDrift 24s linear infinite;
+    }
+
+    .steam {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .steam span {
+      position: absolute;
+      bottom: -140px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+      filter: blur(10px);
+      opacity: 0;
+      animation: steamRise linear infinite;
+    }
+
+    .steam span:nth-child(1) {
+      left: 6%;
+      animation-duration: 17s;
+      animation-delay: -4s;
+    }
+
+    .steam span:nth-child(2) {
+      left: 28%;
+      width: 240px;
+      height: 240px;
+      animation-duration: 22s;
+      animation-delay: -11s;
+    }
+
+    .steam span:nth-child(3) {
+      left: 52%;
+      width: 220px;
+      height: 220px;
+      animation-duration: 19s;
+      animation-delay: -7s;
+    }
+
+    .steam span:nth-child(4) {
+      left: 78%;
+      animation-duration: 18s;
+      animation-delay: -14s;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      gap: 28px;
+      align-items: center;
+      padding: 28px;
+      border: 1px solid var(--panel-border);
+      border-radius: calc(var(--radius) + 6px);
+      background:
+        linear-gradient(145deg, rgba(255, 238, 188, 0.08), transparent 34%),
+        var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -38% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 196, 92, 0.22), transparent 68%);
+      animation: warmGlow 8s ease-in-out infinite alternate;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .brand-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .lang-toggle {
+      appearance: none;
+      border: 1px solid rgba(255, 229, 153, 0.22);
+      border-radius: 999px;
+      background: var(--toggle-bg);
+      color: var(--text);
+      padding: 10px 16px;
+      font: 700 0.92rem/1 var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .lang-toggle:hover,
+    .lang-toggle:focus-visible {
+      background: rgba(255, 217, 120, 0.15);
+      border-color: rgba(255, 229, 153, 0.38);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .logo-wrap {
+      position: relative;
+      width: clamp(78px, 10vw, 108px);
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, rgba(255, 230, 170, 0.95), rgba(255, 157, 72, 0.8));
+      box-shadow:
+        0 0 0 8px rgba(255, 229, 147, 0.08),
+        0 18px 35px rgba(0, 0, 0, 0.32);
+      animation: logoFloat 5.5s ease-in-out infinite;
+    }
+
+    .logo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 226, 164, 0.35);
+      animation: logoRing 4.5s ease-out infinite;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ffffff;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 231, 158, 0.85));
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      font-size: clamp(2.9rem, 8vw, 6rem);
+      text-transform: uppercase;
+    }
+
+    .brand-text h2 {
+      font-size: clamp(1.45rem, 2.4vw, 2.25rem);
+      color: var(--text);
+    }
+
+    .brand-text p,
+    .hero-copy p,
+    .menu-badge {
+      color: var(--muted);
+    }
+
+    .brand-text p,
+    .hero-copy p {
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 520px;
+    }
+
+    .hero-copy p {
+      margin-top: 18px;
+      font-size: 1rem;
+      max-width: 50ch;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .chip {
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 229, 153, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 245, 212, 0.08);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .menu-stage {
+      position: relative;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 238, 188, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(6, 31, 26, 0.56);
+      border: 1px solid rgba(255, 238, 188, 0.14);
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .menu-stage::before,
+    .menu-stage::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0.75;
+    }
+
+    .menu-stage::before {
+      width: 190px;
+      height: 190px;
+      top: -60px;
+      right: -30px;
+      background: radial-gradient(circle, rgba(255, 223, 142, 0.22), transparent 68%);
+      animation: orbitA 12s ease-in-out infinite;
+    }
+
+    .menu-stage::after {
+      width: 140px;
+      height: 140px;
+      bottom: -26px;
+      left: -24px;
+      background: radial-gradient(circle, rgba(255, 162, 88, 0.18), transparent 70%);
+      animation: orbitB 10s ease-in-out infinite;
+    }
+
+    .menu-card {
+      position: relative;
+      width: min(100%, 390px);
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(7, 24, 20, 0.46);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.44),
+        0 0 0 1px rgba(255, 232, 173, 0.11);
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.18s ease-out;
+    }
+
+    .menu-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(125deg, rgba(255, 255, 255, 0.16), transparent 25%, transparent 70%, rgba(255, 219, 134, 0.18));
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .menu-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transform: scale(1.01);
+    }
+
+    .menu-badge {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 26px;
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      text-transform: uppercase;
+    }
+
+    .section-head p {
+      max-width: 40ch;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .item-card {
+      position: relative;
+      min-height: 260px;
+      padding: 18px;
+      border: 1px solid rgba(255, 232, 176, 0.12);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 231, 162, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(8, 36, 30, 0.64);
+      overflow: hidden;
+      isolation: isolate;
+      transform: translateY(0) scale(1);
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+      cursor: pointer;
+    }
+
+    .item-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -8% -28% auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 193, 84, 0.2), transparent 70%);
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .item-card:hover,
+    .item-card:focus-visible,
+    .item-card.is-active {
+      transform: translateY(-8px) scale(1.03);
+      border-color: rgba(255, 221, 139, 0.34);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.34);
+      background:
+        linear-gradient(180deg, rgba(255, 231, 162, 0.12), rgba(255, 255, 255, 0.03)),
+        rgba(9, 43, 35, 0.82);
+    }
+
+    .item-card:hover::before,
+    .item-card:focus-visible::before,
+    .item-card.is-active::before {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+
+    .item-card:focus-visible {
+      outline: 2px solid rgba(255, 223, 142, 0.55);
+      outline-offset: 2px;
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .item-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .price-pill {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 231, 162, 0.12);
+      border: 1px solid rgba(255, 228, 165, 0.2);
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1;
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+
+    .item-card:hover .price-pill,
+    .item-card:focus-visible .price-pill,
+    .item-card.is-active .price-pill {
+      transform: scale(1.08);
+      background: rgba(255, 217, 120, 0.18);
+    }
+
+    .dish-visual {
+      position: absolute;
+      right: -8px;
+      bottom: -14px;
+      width: 188px;
+      height: 188px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid rgba(255, 240, 194, 0.16);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.34);
+      transform: scale(0.92) rotate(-8deg);
+      transition: transform 0.45s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      z-index: 0;
+    }
+
+    .dish-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(2.9);
+      transition: transform 0.45s ease, filter 0.35s ease;
+      filter: saturate(1.08) contrast(1.04);
+    }
+
+    .item-card:hover .dish-visual,
+    .item-card:focus-visible .dish-visual,
+    .item-card.is-active .dish-visual {
+      transform: scale(1.08) rotate(0deg);
+      border-color: rgba(255, 235, 179, 0.34);
+      box-shadow: 0 24px 46px rgba(0, 0, 0, 0.42);
+    }
+
+    .item-card:hover .dish-visual img,
+    .item-card:focus-visible .dish-visual img,
+    .item-card.is-active .dish-visual img {
+      transform: scale(3.08);
+      filter: saturate(1.16) contrast(1.08);
+    }
+
+    .item-copy {
+      position: relative;
+      z-index: 1;
+      width: min(62%, 260px);
+      margin-top: 16px;
+    }
+
+    .item-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .hover-note {
+      margin-top: 14px;
+      color: rgba(255, 236, 190, 0.78);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: letter-spacing 0.3s ease, color 0.3s ease;
+    }
+
+    .item-card:hover .hover-note,
+    .item-card:focus-visible .hover-note,
+    .item-card.is-active .hover-note {
+      color: var(--accent);
+      letter-spacing: 0.18em;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px) scale(0.985);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @keyframes ambientPulse {
+      from {
+        transform: scale(1) translateY(0);
+        opacity: 0.9;
+      }
+      to {
+        transform: scale(1.08) translateY(-18px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes textureDrift {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(-70px, -40px, 0);
+      }
+    }
+
+    @keyframes steamRise {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.78);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.18;
+      }
+      55% {
+        opacity: 0.12;
+      }
+      100% {
+        transform: translate3d(70px, -120vh, 0) scale(1.55);
+        opacity: 0;
+      }
+    }
+
+    @keyframes warmGlow {
+      from {
+        transform: scale(0.9);
+        opacity: 0.7;
+      }
+      to {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes logoRing {
+      0% {
+        transform: scale(0.92);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1.12);
+        opacity: 0;
+      }
+    }
+
+    @keyframes orbitA {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(-22px, 24px, 0);
+      }
+    }
+
+    @keyframes orbitB {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(18px, -20px, 0);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        width: min(100% - 18px, 1120px);
+        padding-top: 12px;
+      }
+
+      .hero,
+      .section {
+        padding: 20px;
+      }
+
+      .hero-grid,
+      .item-grid,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: grid;
+      }
+
+      .menu-card {
+        width: min(100%, 430px);
+      }
+
+      .item-copy {
+        width: min(58%, 260px);
+      }
+
+      .brand-row {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .item-card {
+        min-height: 240px;
+      }
+
+      .dish-visual {
+        width: 156px;
+        height: 156px;
+        right: -4px;
+        bottom: -8px;
+      }
+
+      .item-copy {
+        width: calc(100% - 122px);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        gap: 22px;
+      }
+
+      h1 {
+        font-size: clamp(2.3rem, 14vw, 4rem);
+      }
+
+      .brand-row {
+        gap: 12px;
+      }
+
+      .chip-row {
+        gap: 10px;
+      }
+
+      .chip {
+        width: 100%;
+        text-align: center;
+      }
+
+      .brand-row,
+      .brand-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .lang-toggle {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body::before,
+      body::after,
+      .steam,
+      .hero::before,
+      .menu-stage::before,
+      .menu-stage::after {
+        display: none;
+      }
+
+      .hero,
+      .section,
+      .menu-stage,
+      .menu-card,
+      .item-card,
+      .dish-visual {
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+      }
+
+      .item-card:hover,
+      .item-card:focus-visible,
+      .item-card.is-active {
+        transform: translateY(-3px) scale(1.01);
+      }
+
+      .dish-visual,
+      .item-card:hover .dish-visual,
+      .item-card:focus-visible .dish-visual,
+      .item-card.is-active .dish-visual {
+        transform: scale(0.96) rotate(0deg);
+      }
+
+      .dish-visual img,
+      .item-card:hover .dish-visual img,
+      .item-card:focus-visible .dish-visual img,
+      .item-card.is-active .dish-visual img {
+        transform: scale(2.45);
+      }
+
+      .logo-wrap,
+      .logo-wrap::after {
+        animation: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="steam" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <main class="page">
+    <section class="hero reveal">
+      <div class="brand-row">
+        <div class="brand-meta">
+          <div class="logo-wrap">
+            <img src="./logo.png" alt="Tasty Biryani logo" loading="eager" decoding="async">
+          </div>
+          <div class="brand-text">
+            <div class="eyebrow" data-i18n="brandEyebrow">Signature Flavours</div>
+            <h2 data-i18n="brandTitle">Tasty Biryani House</h2>
+            <p data-i18n="brandDesc">Rich spice, slow-cooked aroma, and a menu presented with a cinematic feel.</p>
+          </div>
+        </div>
+        <button class="lang-toggle" id="langToggle" type="button" aria-pressed="false">मराठी</button>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow" data-i18n="heroEyebrow">Now Serving</div>
+          <h1 data-i18n="heroTitle">Our Menu</h1>
+          <p data-i18n="heroDesc">
+            A polished one-page menu experience built around your original design, with smooth
+            motion, strong branding, and a mobile-friendly presentation for customers opening it
+            from Google Maps.
+          </p>
+          <div class="chip-row">
+            <div class="chip" data-i18n="chipChicken">Chicken Biryani</div>
+            <div class="chip" data-i18n="chipLeg">Leg Piece Biryani</div>
+            <div class="chip" data-i18n="chipEgg">Egg Biryani</div>
+            <div class="chip" data-i18n="chipVeg">Veg Biryani</div>
+          </div>
+        </div>
+
+        <div class="menu-stage reveal">
+          <div class="menu-card" id="menuCard">
+            <img src="./Untitled%20(2).png" alt="Tasty Biryani House menu" loading="lazy" decoding="async">
+          </div>
+          <div class="menu-badge" data-i18n="menuBadge">Animated Menu Showcase</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <h2 data-i18n="popularTitle">Popular Picks</h2>
+        <p data-i18n="popularDesc">
+          Hover on a dish to enlarge the card and bring its photo and price forward. On mobile,
+          tap a card to hold the same expanded state.
+        </p>
+      </div>
+
+      <div class="item-grid">
+        <article class="item-card reveal" tabindex="0">
+          <div class="item-top">
+            <h3 class="item-title" data-i18n="dishChickenTitle">Chicken Biryani</h3>
+            <div class="price-pill">&#8377;150</div>
+          </div>
+          <div class="item-copy">
+            <p data-i18n="dishChickenDesc">Classic Marathwada dum biryani with tender chicken, saffron notes, and bold fresh spice.</p>
+            <div class="hover-note" data-i18n="hoverNote">Tap or hover to zoom</div>
+          </div>
+          <div class="dish-visual">
+            <img src="./Chicken%20biryani.jpg" alt="Chicken Biryani" loading="lazy" decoding="async">
+          </div>
+        </article>
+
+        <article class="item-card reveal" tabindex="0">
+          <div class="item-top">
+            <h3 class="item-title" data-i18n="dishLegTitle">Leg Piece Biryani</h3>
+            <div class="price-pill">&#8377;200</div>
+          </div>
+          <div class="item-copy">
+            <p data-i18n="dishLegDesc">The meatiest serving on the menu, with a juicy leg piece, special masala, and fragrant long-grain rice.</p>
+            <div class="hover-note" data-i18n="hoverNote">Tap or hover to zoom</div>
+          </div>
+          <div class="dish-visual">
+            <img src="./download%20(1).jpg" alt="Leg Piece Biryani" loading="lazy" decoding="async">
+          </div>
+        </article>
+
+        <article class="item-card reveal" tabindex="0">
+          <div class="item-top">
+            <h3 class="item-title" data-i18n="dishEggTitle">Egg Biryani</h3>
+            <div class="price-pill">&#8377;130</div>
+          </div>
+          <div class="item-copy">
+            <p data-i18n="dishEggDesc">Rich spiced gravy, perfectly boiled eggs, aromatic basmati, and the best budget biryani on the list.</p>
+            <div class="hover-note" data-i18n="hoverNote">Tap or hover to zoom</div>
+          </div>
+          <div class="dish-visual">
+            <img src="./Egg%20Biriyani.jpg" alt="Egg Biryani" loading="lazy" decoding="async">
+          </div>
+        </article>
+
+        <article class="item-card reveal" tabindex="0">
+          <div class="item-top">
+            <h3 class="item-title" data-i18n="dishVegTitle">Veg Biryani</h3>
+            <div class="price-pill">&#8377;120</div>
+          </div>
+          <div class="item-copy">
+            <p data-i18n="dishVegDesc">Seasonal vegetables, whole spices, fragrant rice, and a lighter pocket-friendly plate with strong flavour.</p>
+            <div class="hover-note" data-i18n="hoverNote">Tap or hover to zoom</div>
+          </div>
+          <div class="dish-visual">
+            <img src="./Vegetable%20Dum%20Biryani%20(In%20oven).jpg" alt="Veg Biryani" loading="lazy" decoding="async">
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const translations = {
+      en: {
+        brandEyebrow: "Signature Flavours",
+        brandTitle: "Tasty Biryani House",
+        brandDesc: "Rich spice, slow-cooked aroma, and a menu presented with a cinematic feel.",
+        heroEyebrow: "Now Serving",
+        heroTitle: "Our Menu",
+        heroDesc: "A polished one-page menu experience built around your original design, with smooth motion, strong branding, and a mobile-friendly presentation for customers opening it from Google Maps.",
+        chipChicken: "Chicken Biryani",
+        chipLeg: "Leg Piece Biryani",
+        chipEgg: "Egg Biryani",
+        chipVeg: "Veg Biryani",
+        menuBadge: "Animated Menu Showcase",
+        popularTitle: "Popular Picks",
+        popularDesc: "Hover on a dish to enlarge the card and bring its photo and price forward. On mobile, tap a card to hold the same expanded state.",
+        dishChickenTitle: "Chicken Biryani",
+        dishChickenDesc: "Classic Marathwada dum biryani with tender chicken, saffron notes, and bold fresh spice.",
+        dishLegTitle: "Leg Piece Biryani",
+        dishLegDesc: "The meatiest serving on the menu, with a juicy leg piece, special masala, and fragrant long-grain rice.",
+        dishEggTitle: "Egg Biryani",
+        dishEggDesc: "Rich spiced gravy, perfectly boiled eggs, aromatic basmati, and the best budget biryani on the list.",
+        dishVegTitle: "Veg Biryani",
+        dishVegDesc: "Seasonal vegetables, whole spices, fragrant rice, and a lighter pocket-friendly plate with strong flavour.",
+        hoverNote: "Tap or hover to zoom",
+        toggleLabel: "मराठी",
+        pageTitle: "Tasty Biryani House | Menu",
+        pageDescription: "Tasty Biryani House menu with smooth animation, rich visuals, and logo branding for easy sharing."
+      },
+      mr: {
+        brandEyebrow: "खास चव",
+        brandTitle: "टेस्टी बिर्याणी हाऊस",
+        brandDesc: "समृद्ध मसाले, मंद आचेवर शिजवलेला सुगंध, आणि उठावदार सादरीकरण असलेला मेनू.",
+        heroEyebrow: "आता उपलब्ध",
+        heroTitle: "आमचा मेनू",
+        heroDesc: "तुमच्या मूळ डिझाइनवर आधारित हा एक-पानांचा मेनू अनुभव आहे, ज्यात चांगली ब्रँडिंग, हलकी हालचाल आणि मोबाईलवर सहज पाहता येईल अशी मांडणी आहे.",
+        chipChicken: "चिकन बिर्याणी",
+        chipLeg: "लेग पीस बिर्याणी",
+        chipEgg: "अंडा बिर्याणी",
+        chipVeg: "व्हेज बिर्याणी",
+        menuBadge: "अॅनिमेटेड मेनू शोकेस",
+        popularTitle: "लोकप्रिय पदार्थ",
+        popularDesc: "डिशवर होव्हर केल्यावर कार्ड आणि फोटो मोठे दिसतील. मोबाईलवर हेच पाहण्यासाठी कार्डवर टॅप करा.",
+        dishChickenTitle: "चिकन बिर्याणी",
+        dishChickenDesc: "मऊ चिकन, केशराची हलकी चव आणि ताज्या मसाल्यांनी भरलेली खास मराठवाडा दम बिर्याणी.",
+        dishLegTitle: "लेग पीस बिर्याणी",
+        dishLegDesc: "रसाळ लेग पीस, खास मसाला आणि सुगंधी लांब तांदळासह भरघोस सर्व्हिंग.",
+        dishEggTitle: "अंडा बिर्याणी",
+        dishEggDesc: "मसालेदार ग्रेव्ही, नीट उकडलेली अंडी आणि सुगंधी बासमती तांदळाची परवडणारी चवदार बिर्याणी.",
+        dishVegTitle: "व्हेज बिर्याणी",
+        dishVegDesc: "हंगामी भाज्या, अख्खे मसाले, सुगंधी तांदूळ आणि हलकी पण चवदार प्लेट.",
+        hoverNote: "टॅप किंवा होव्हर करून मोठे पहा",
+        toggleLabel: "English",
+        pageTitle: "टेस्टी बिर्याणी हाऊस | मेनू",
+        pageDescription: "टेस्टी बिर्याणी हाऊस मेनू, हलक्या अॅनिमेशनसह, आकर्षक दृश्यांसह आणि शेअरिंगसाठी लोगो ब्रँडिंगसह."
+      }
+    };
+
+    const revealItems = document.querySelectorAll(".reveal");
+    const menuCard = document.getElementById("menuCard");
+    const itemCards = document.querySelectorAll(".item-card");
+    const langToggle = document.getElementById("langToggle");
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+    const savedLanguage = localStorage.getItem("menuLanguage");
+
+    function applyLanguage(lang) {
+      const copy = translations[lang];
+
+      document.documentElement.lang = lang === "mr" ? "mr" : "en";
+      document.title = copy.pageTitle;
+
+      if (descriptionMeta) {
+        descriptionMeta.setAttribute("content", copy.pageDescription);
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.dataset.i18n;
+        if (copy[key]) {
+          node.textContent = copy[key];
+        }
+      });
+
+      langToggle.textContent = copy.toggleLabel;
+      langToggle.setAttribute("aria-pressed", String(lang === "mr"));
+      localStorage.setItem("menuLanguage", lang);
+    }
+
+    if ("IntersectionObserver" in window && !isReducedMotion) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${Math.min(index, 5) * 60}ms`;
+        observer.observe(item);
+      });
+    } else {
+      revealItems.forEach((item) => item.classList.add("in-view"));
+    }
+
+    if (!isReducedMotion && !isSmallScreen && menuCard) {
+      const stage = menuCard.parentElement;
+
+      stage.addEventListener("mousemove", (event) => {
+        const rect = stage.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * 10;
+        const rotateX = (0.5 - y) * 10;
+
+        menuCard.style.transform =
+          `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      stage.addEventListener("mouseleave", () => {
+        menuCard.style.transform = "perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0)";
+      });
+    }
+
+    itemCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const isActive = card.classList.contains("is-active");
+
+        itemCards.forEach((item) => item.classList.remove("is-active"));
+
+        if (!isActive) {
+          card.classList.add("is-active");
+        }
+      });
+
+      card.addEventListener("focus", () => {
+        itemCards.forEach((item) => {
+          if (item !== card) {
+            item.classList.remove("is-active");
+          }
+        });
+        card.classList.add("is-active");
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (![...itemCards].some((card) => card.contains(event.target))) {
+        itemCards.forEach((card) => card.classList.remove("is-active"));
+      }
+    });
+
+    langToggle.addEventListener("click", () => {
+      const nextLang = document.documentElement.lang === "mr" ? "en" : "mr";
+      applyLanguage(nextLang);
+    });
+
+    applyLanguage(savedLanguage === "mr" ? "mr" : "en");
+  </script>
+</body>
+</html>
